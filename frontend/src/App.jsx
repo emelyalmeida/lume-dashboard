@@ -73,10 +73,10 @@ export default function App() {
         <Card title="Faturamento por mês" className="c-month"><ResponsiveContainer height={200}><BarChart data={d.monthly.map(m => ({ ...m, mes: MESES[m.m - 1] }))}>
           <CartesianGrid stroke="#f3dfe7" vertical={false} /><XAxis dataKey="mes" tick={{ fontSize: 11 }} /><YAxis tick={{ fontSize: 11 }} width={70} tickFormatter={v => `R$ ${v}`} />
           <Tooltip formatter={brl} /><Bar dataKey="total" fill="#f08fb2" radius={[5, 5, 0, 0]} /></BarChart></ResponsiveContainer></Card>
-        <Card className="s4 feat"><div className="top"><Thumb n={d["top-products"][0].name} big /><div><h3>{d["top-products"][0].name}</h3><p>O mais pedido do mês!</p><button type="button" onClick={() => setSel(d["top-products"][0])}>Ver detalhes</button></div></div>
+              <Card className="s4 feat"><div className="top"><Thumb n={d["top-products"][0].name} big /><div><h3>{d["top-products"][0].name}</h3><p>O mais pedido do mês!</p><button type="button" onClick={() => setSel(d["top-products"][0])}>Ver detalhes</button></div></div>
           <div className="mini"><div>Vendas<b>{d["top-products"][0].qty} un.</b></div><div>Faturamento<b>{brl(d["top-products"][0].qty * d["top-products"][0].price)}</b></div></div></Card>
         <Card title="Notificações" className="s12"><div className="nt">{[["🛍️", `Novo pedido #${d.orders[0].id}`, "Há 12 minutos"], ["🍫", `Estoque baixo: ${(d.stock.find(p => p.status === "Baixo") || d.stock[0]).name}`, "Há 34 minutos"], ["👤", `Cliente cadastrado: ${d.orders[3].customer}`, "Há 1 hora"], ["✅", "Pagamento confirmado", "Há 2 horas"]].map(n => <div key={n[1]}><span className="ic">{n[0]}</span><p><b>{n[1]}</b><small>{n[2]}</small></p></div>)}</div></Card>
-      </div>
+</div>
       </>}
       <footer><span><b>Lume Store</b> · Sistema de gestão · v1.0</span><i>“Sonhos, café e boas vendas!” ♡</i></footer>
       {sel && (() => { const q = (d["top-products"].find(x => x.name === sel.name) || {}).qty || 0; return <div className="overlay" onClick={() => setSel(null)}>
